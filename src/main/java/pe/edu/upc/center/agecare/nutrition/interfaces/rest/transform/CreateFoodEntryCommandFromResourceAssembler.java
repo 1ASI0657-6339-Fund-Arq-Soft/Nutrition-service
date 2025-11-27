@@ -12,7 +12,7 @@ public class CreateFoodEntryCommandFromResourceAssembler {
                 resource.time(),
                 resource.addedBy(),
                 resource.addedById(),
-                resource.targetId()
+                resource.residentId()
         );
     }
 }

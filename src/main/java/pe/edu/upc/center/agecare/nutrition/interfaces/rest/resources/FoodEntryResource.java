@@ -11,6 +11,6 @@ public record FoodEntryResource(
         String createdAt,
         String addedBy,
         Long addedById,
-        Long targetId
+        Long residentId
 ) {
 }

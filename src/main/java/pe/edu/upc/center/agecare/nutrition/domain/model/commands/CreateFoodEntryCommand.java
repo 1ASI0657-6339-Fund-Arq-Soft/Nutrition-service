@@ -9,6 +9,6 @@ public record CreateFoodEntryCommand(
         String time,
         String addedBy,
         Long addedById,
-        Long targetId
+        Long residentId
 ) {
 }

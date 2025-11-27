@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface FoodEntryRepository extends JpaRepository<FoodEntry, Long> {
-    List<FoodEntry> findByTargetId(Long targetId);
+    List<FoodEntry> findByResidentId(Long residentId);
     List<FoodEntry> findByDate(String date);
     List<FoodEntry> findByMeal(MealType meal);
     List<FoodEntry> findByAddedById(Long addedById);

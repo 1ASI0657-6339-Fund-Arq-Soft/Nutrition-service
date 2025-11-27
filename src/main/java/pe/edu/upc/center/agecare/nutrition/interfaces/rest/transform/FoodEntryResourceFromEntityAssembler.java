@@ -19,7 +19,7 @@ public class FoodEntryResourceFromEntityAssembler {
                 createdAt,
                 entity.getAddedBy(),
                 entity.getAddedById(),
-                entity.getTargetId()
+                entity.getResidentId()
         );
     }
 }

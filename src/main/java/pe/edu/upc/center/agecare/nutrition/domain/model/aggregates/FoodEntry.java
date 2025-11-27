@@ -42,8 +42,8 @@ public class FoodEntry extends AuditableAbstractAggregateRoot<FoodEntry> {
     private Long addedById;
 
     @Getter
-    @Column(name = "target_id")
-    private Long targetId;
+    @Column(name = "resident_id")
+    private Long residentId;
 
     protected FoodEntry() {
     }
@@ -55,7 +55,7 @@ public class FoodEntry extends AuditableAbstractAggregateRoot<FoodEntry> {
         this.time = command.time();
         this.addedBy = command.addedBy();
         this.addedById = command.addedById();
-        this.targetId = command.targetId();
+        this.residentId = command.residentId();
     }
 
     public FoodEntry updateInformation(MealType meal, String description, String date, String time) {
@@ -64,5 +64,42 @@ public class FoodEntry extends AuditableAbstractAggregateRoot<FoodEntry> {
         this.date = date;
         this.time = time;
         return this;
+    }
+
+    // Explicit getters to ensure methods are available at compile-time
+    public Long getId() {
+        return super.getId();
+    }
+
+    public java.util.Date getCreatedAt() {
+        return super.getCreatedAt();
+    }
+
+    public MealType getMeal() {
+        return this.meal;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
+
+    public String getTime() {
+        return this.time;
+    }
+
+    public String getAddedBy() {
+        return this.addedBy;
+    }
+
+    public Long getAddedById() {
+        return this.addedById;
+    }
+
+    public Long getResidentId() {
+        return this.residentId;
     }
 }

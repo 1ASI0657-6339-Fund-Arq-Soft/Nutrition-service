@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.center.agecare.nutrition.domain.model.commands.DeleteFoodEntryCommand;
 import pe.edu.upc.center.agecare.nutrition.domain.model.queries.*;
 import pe.edu.upc.center.agecare.nutrition.domain.model.valueobjects.MealType;
 import pe.edu.upc.center.agecare.nutrition.domain.services.FoodEntryCommandService;
@@ -93,14 +92,14 @@ public class FoodEntryController {
         return ResponseEntity.ok(foodEntryResource);
     }
 
-    @Operation(summary = "Get food entries by target id", description = "Get all food entries for a specific target")
+    @Operation(summary = "Get food entries by resident id", description = "Get all food entries for a specific resident")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Food entries found")
     })
-    @GetMapping("/target/{targetId}")
-    public ResponseEntity<List<FoodEntryResource>> getFoodEntriesByTargetId(@PathVariable Long targetId) {
-        var getFoodEntriesByTargetIdQuery = new GetFoodEntriesByTargetIdQuery(targetId);
-        var foodEntries = foodEntryQueryService.handle(getFoodEntriesByTargetIdQuery);
+    @GetMapping("/resident/{residentId}")
+    public ResponseEntity<List<FoodEntryResource>> getFoodEntriesByResidentId(@PathVariable Long residentId) {
+        var getFoodEntriesByResidentIdQuery = new GetFoodEntriesByResidentIdQuery(residentId);
+        var foodEntries = foodEntryQueryService.handle(getFoodEntriesByResidentIdQuery);
         var foodEntryResources = foodEntries.stream()
                 .map(FoodEntryResourceFromEntityAssembler::toResourceFromEntity)
                 .collect(Collectors.toList());
@@ -159,15 +158,5 @@ public class FoodEntryController {
         return ResponseEntity.ok(foodEntryResource);
     }
 
-    @Operation(summary = "Delete food entry", description = "Delete food entry by id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Food entry deleted"),
-            @ApiResponse(responseCode = "404", description = "Food entry not found")
-    })
-    @DeleteMapping("/{foodEntryId}")
-    public ResponseEntity<?> deleteFoodEntry(@PathVariable Long foodEntryId) {
-        var deleteFoodEntryCommand = new DeleteFoodEntryCommand(foodEntryId);
-        foodEntryCommandService.handle(deleteFoodEntryCommand);
-        return ResponseEntity.noContent().build();
-    }
+    // Delete endpoint removed intentionally. Deleting food entries is not supported via API.
 }

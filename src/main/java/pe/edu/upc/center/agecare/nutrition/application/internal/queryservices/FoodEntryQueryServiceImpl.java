@@ -28,8 +28,8 @@ public class FoodEntryQueryServiceImpl implements FoodEntryQueryService {
     }
 
     @Override
-    public List<FoodEntry> handle(GetFoodEntriesByTargetIdQuery query) {
-        return foodEntryRepository.findByTargetId(query.targetId());
+    public List<FoodEntry> handle(GetFoodEntriesByResidentIdQuery query) {
+        return foodEntryRepository.findByResidentId(query.residentId());
     }
 
     @Override

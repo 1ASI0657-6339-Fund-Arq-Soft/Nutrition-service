@@ -3,7 +3,6 @@ package pe.edu.upc.center.agecare.nutrition.application.internal.commandservices
 import org.springframework.stereotype.Service;
 import pe.edu.upc.center.agecare.nutrition.domain.model.aggregates.FoodEntry;
 import pe.edu.upc.center.agecare.nutrition.domain.model.commands.CreateFoodEntryCommand;
-import pe.edu.upc.center.agecare.nutrition.domain.model.commands.DeleteFoodEntryCommand;
 import pe.edu.upc.center.agecare.nutrition.domain.model.commands.UpdateFoodEntryCommand;
 import pe.edu.upc.center.agecare.nutrition.domain.services.FoodEntryCommandService;
 import pe.edu.upc.center.agecare.nutrition.infrastructure.persistence.jpa.repositories.FoodEntryRepository;
@@ -54,16 +53,4 @@ public class FoodEntryCommandServiceImpl implements FoodEntryCommandService {
         }
     }
 
-    @Override
-    public void handle(DeleteFoodEntryCommand command) {
-        if (!foodEntryRepository.existsById(command.foodEntryId())) {
-            throw new IllegalArgumentException("Food entry does not exist");
-        }
-        
-        try {
-            foodEntryRepository.deleteById(command.foodEntryId());
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Error while deleting food entry: " + e.getMessage());
-        }
-    }
 }

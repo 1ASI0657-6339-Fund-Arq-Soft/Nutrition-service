@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface FoodEntryQueryService {
     List<FoodEntry> handle(GetAllFoodEntriesQuery query);
     Optional<FoodEntry> handle(GetFoodEntryByIdQuery query);
-    List<FoodEntry> handle(GetFoodEntriesByTargetIdQuery query);
+    List<FoodEntry> handle(GetFoodEntriesByResidentIdQuery query);
     List<FoodEntry> handle(GetFoodEntriesByDateQuery query);
     List<FoodEntry> handle(GetFoodEntriesByMealTypeQuery query);
 }
